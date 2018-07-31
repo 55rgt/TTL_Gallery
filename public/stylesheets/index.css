@@ -19,6 +19,12 @@
     z-index: 1000; }
     .main-grid section .filter-navigator form.form-inline.my-2.my-lg-0 .none {
       display: none; }
+    .main-grid section .filter-navigator .tag-zone {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap; }
+      .main-grid section .filter-navigator .tag-zone > .tag {
+        margin-right: 5px; }
     .main-grid section .filter-navigator .switch {
       position: relative;
       display: inline-block;
@@ -61,7 +67,7 @@
           border-radius: 50%; }
   .main-grid section .gallery {
     width: 100%;
-    height: 1300px;
+    height: 2000px;
     border: solid 1px #ccc; }
   .main-grid .empty-flex-column {
     flex: 1; }

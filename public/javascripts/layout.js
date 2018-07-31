@@ -58,17 +58,21 @@ const filterNavigator = new function() {
      */
     const $searchInput = $('input.form-control.mr-sm-2');
     const $tagZone = $('.tag-zone');
+    let tagsCount = 0;
 
     $searchInput.on('keyup', function(event) {
 
-        if (event.keyCode === 13) {
-            console.log('entered');
+        if (event.keyCode === 13 && $searchInput.val() !== '' &&
+        tagsCount < 6) {
 
             const template = `<div class='tag'>#${$searchInput.val()}</div>`;
             console.log(template);
             $tagZone.append(template);
 
             $searchInput.val('');
+
+            tagsCount++;
+            console.log(tagsCount);
         }
     });
 
