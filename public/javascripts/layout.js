@@ -2,7 +2,8 @@ const filterNavigator = new function() {
     const $window = $(window);
     const $mainTitle = $('.main-title');
     const $filterNavigator = $('.filter-navigator');
-    const $container = $('.container');
+
+    let scrollPosition = 'up';
 
     $window.scroll(function() {
 
@@ -10,22 +11,44 @@ const filterNavigator = new function() {
 
         // console.log(headerHeight);
         // console.log($window.scrollTop());
-        console.log($filterNavigator.parent().width());
+        // console.log($filterNavigator.parent().width());
 
         if ($window.scrollTop() < headerHeight) {
             // 스크롤이 상위에 있을 때
-            $filterNavigator.css('position', 'static');
+            if (scrollPosition === 'down') {
+                $filterNavigator.css('position', 'static');
+
+                scrollPosition = 'up';
+            }
         }
         else {
             // 스크롤이 하위에 있을 때
-            $filterNavigator.css(
-                {'position': 'fixed',
-                    'top' : 0,
-                    'width' : $filterNavigator.parent().width()
-                });
+            if (scrollPosition === 'up') {
+                $filterNavigator.css(
+                    {'position': 'fixed',
+                        'top' : 0,
+                        'width' : $filterNavigator.parent().width()
+                    });
+
+                scrollPosition = 'down';
+            }
         }
 
     });
+
+    $window.on('resize', () => {
+        const headerHeight = 56 + $mainTitle.height();
+
+        if ($window.scrollTop() > headerHeight) {
+            $filterNavigator.css(
+                {
+                    'position': 'fixed',
+                    'width': $filterNavigator.parent().width()
+                });
+        }
+    });
+
+
 };
 
 

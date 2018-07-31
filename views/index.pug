@@ -4,18 +4,21 @@ block link
     link(href='/stylesheets/index.css' rel='stylesheet')
 
 block content
-    .container
-        .main-title TheTheLab
-            br
-            | Gallery
-        .filter-navigator
-            .scroll-filter
-            .search-filter
-            .tag
-            label.switch
-                input(type='checkbox')
-                span.slider.round
-        .gallery
+    .main-grid
+        .empty-flex-column
+        section
+            .main-title TheTheLab
+                br
+                | Gallery
+            .filter-navigator
+                .scroll-filter
+                .search-filter
+                .tag
+                label.switch
+                    input(type='checkbox')
+                    span.slider.round
+            .gallery
+        .empty-flex-column
 
 
 
