@@ -1,0 +1,12 @@
+get post delete
+
+crud
+create read update delete
+
+router 나 데이터를 관리하는데, 저 4개가 적용되어 있다.
+
+동적인 데이터와
+
+정적인 데이터를 관리하는 데 있어서 다를 수 있는데
+
+데이터베이스 안에 있는 동적인 데이터가 

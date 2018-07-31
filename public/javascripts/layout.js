@@ -9,10 +9,6 @@ const filterNavigator = new function() {
 
         const headerHeight = 56 + $mainTitle.height();
 
-        // console.log(headerHeight);
-        // console.log($window.scrollTop());
-        // console.log($filterNavigator.parent().width());
-
         if ($window.scrollTop() < headerHeight) {
             // 스크롤이 상위에 있을 때
             if (scrollPosition === 'down') {
@@ -40,14 +36,17 @@ const filterNavigator = new function() {
         const headerHeight = 56 + $mainTitle.height();
 
         if ($window.scrollTop() > headerHeight) {
-            $filterNavigator.css(
-                {
-                    'position': 'fixed',
-                    'width': $filterNavigator.parent().width()
+            $filterNavigator.css({
+                    'width' : $filterNavigator.parent().width()
                 });
         }
-    });
+        else {
+            $filterNavigator.css({
+               'width' : '100%'
+            });
+        }
 
+    });
 
 };
 
