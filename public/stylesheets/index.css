@@ -10,7 +10,9 @@
 .filter-navigator {
   width: 100%;
   height: 80px;
-  border: solid 1px #ccc; }
+  border: solid 1px #ccc;
+  background-color: antiquewhite;
+  z-index: 1000; }
   .filter-navigator .switch {
     position: relative;
     display: inline-block;

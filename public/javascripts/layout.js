@@ -2,6 +2,7 @@ const filterNavigator = new function() {
     const $window = $(window);
     const $mainTitle = $('.main-title');
     const $filterNavigator = $('.filter-navigator');
+    const $container = $('.container');
 
     $window.scroll(function() {
 
@@ -9,6 +10,7 @@ const filterNavigator = new function() {
 
         // console.log(headerHeight);
         // console.log($window.scrollTop());
+        console.log($filterNavigator.parent().width());
 
         if ($window.scrollTop() < headerHeight) {
             // 스크롤이 상위에 있을 때
@@ -18,8 +20,8 @@ const filterNavigator = new function() {
             // 스크롤이 하위에 있을 때
             $filterNavigator.css(
                 {'position': 'fixed',
-                    'left' : 0,
-                    'top' : 0
+                    'top' : 0,
+                    'width' : $filterNavigator.parent().width()
                 });
         }
 
