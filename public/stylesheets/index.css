@@ -14,7 +14,6 @@
     align-items: center;
     width: 100%;
     height: 80px;
-    border: solid 1px #ccc;
     background-color: antiquewhite;
     z-index: 1000; }
     .main-grid section .filter-navigator form.form-inline.my-2.my-lg-0 .none {
@@ -24,7 +23,12 @@
       display: flex;
       flex-wrap: wrap; }
       .main-grid section .filter-navigator .tag-zone > .tag {
-        margin-right: 5px; }
+        margin-right: 5px;
+        transition-property: color;
+        transition-duration: 0.5s;
+        cursor: pointer; }
+        .main-grid section .filter-navigator .tag-zone > .tag:hover {
+          color: #00B7FF; }
     .main-grid section .filter-navigator .switch {
       position: relative;
       display: inline-block;

@@ -58,23 +58,37 @@ const filterNavigator = new function() {
      */
     const $searchInput = $('input.form-control.mr-sm-2');
     const $tagZone = $('.tag-zone');
-    let tagsCount = 0;
+    const tagArray = [];
 
     $searchInput.on('keyup', function(event) {
 
         if (event.keyCode === 13 && $searchInput.val() !== '' &&
-        tagsCount < 6) {
+        !tagArray.includes($searchInput.val()) && tagArray.length < 6) {
 
             const template = `<div class='tag'>#${$searchInput.val()}</div>`;
-            console.log(template);
+
             $tagZone.append(template);
+
+            tagArray.push($searchInput.val());
 
             $searchInput.val('');
 
-            tagsCount++;
-            console.log(tagsCount);
+            /**
+             * 태그들
+             */
+            const $tags = $('.tag');
+
+            $tags.unbind();
+
+            $tags.on('click', function() {
+                const $this = $(this);
+
+                $this.remove();
+            });
         }
     });
+
+
 
     /**
      * 토글 스위치 버튼
