@@ -17,6 +17,8 @@
     border: solid 1px #ccc;
     background-color: antiquewhite;
     z-index: 1000; }
+    .main-grid section .filter-navigator form.form-inline.my-2.my-lg-0 .none {
+      display: none; }
     .main-grid section .filter-navigator .switch {
       position: relative;
       display: inline-block;
