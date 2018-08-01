@@ -6,7 +6,6 @@ function FilterReceiver(originalText){
     let max;
     let filterJson;
 
-
     this.setTags = function (names) {
         tags = names;
     };

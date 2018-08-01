@@ -107,9 +107,7 @@ const filterNavigator = new function () {
                 });
             }
         });
-
     });
-
 
     /**
      * 토글 스위치 버튼
