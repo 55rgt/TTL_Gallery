@@ -94,9 +94,14 @@ const filterNavigator = new function () {
                 $tags.on('click', function () {
                     const $this = $(this);
 
-
-
+                    tagArray.splice(tagArray.indexOf($this.text()), 1);
+                    console.log(tagArray);
                     $this.remove();
+
+                    if(tagArray.length === 0) filter.resetData();
+                    else filter.filterByTagNames(tagArray, false);
+                    console.log(filter.getCurrentData());
+
                 });
             }
         });
