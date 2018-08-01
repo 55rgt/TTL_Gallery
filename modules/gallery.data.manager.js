@@ -2,14 +2,14 @@
 
     let fs = require('fs');
 
-    fs.readFile('../data/gallery.csv', 'utf8', function (err, data) {
+    fs.readFile('../public/data/gallery.csv', 'utf8', function (err, data) {
         if (err) {
             return console.log(err);
         }
         let dataManager = new DataManager(data, true, "#");
         dataManager.preprocess();
         dataManager.toJSON();
-        dataManager.saveJSON('../data/gallery.json');
+        dataManager.saveJSON('../public/data/gallery.json');
     });
 
     function DataManager(dataFile, dataHeader, dataDelimiter) {
@@ -43,8 +43,12 @@
 
             for (let i = that.startLineIndex; i < that.lines.length; i++) {
 
+
+
                 let line = that.lines[i];
                 let obj = {};
+
+                obj['index'] = that.startLineIndex === 0 ? i + 1 : i;
 
                 for (let j = 0; j < that.dataState.length; j++) {
                     let element = line.split(",")[j].trim();

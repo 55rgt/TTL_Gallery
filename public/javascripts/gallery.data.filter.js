@@ -1,8 +1,5 @@
 (function () {
 
-    let fs = require('fs');
-    let _ = require('lodash');
-
     function Filter(originalText) {
 
         let that = this;
@@ -49,9 +46,8 @@
 
 
 
-    fs.readFile('../data/gallery.json', 'utf8', function (err, data) {
+    $.getJSON('../data/gallery.json', function (data) {
 
-        if (err) return console.log(err);
         let a = new Filter(data);
 
         a.filterByTagName('윤');
