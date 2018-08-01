@@ -68,6 +68,8 @@ const filterNavigator = new function () {
         let filter = new Filter(data);
         $searchInput.on('keyup', function (event) {
 
+
+
             if (event.keyCode === 13 && $searchInput.val() !== '' &&
                 !tagArray.includes($searchInput.val()) && tagArray.length < 6) {
 

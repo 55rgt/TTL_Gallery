@@ -5,7 +5,7 @@ function Filter(originalText) {
     /** 완전 복사. */
     this.deepCopy = function (data) {
         return JSON.parse(JSON.stringify(data));
-    }
+    };
 
     this.original = originalText;
     this.current = this.deepCopy(that.original);
@@ -51,25 +51,4 @@ function Filter(originalText) {
         this.setCurrentData(data);
 
     };
-
-
 }
-
-
-// $.getJSON('../data/gallery.json', function (data) {
-//
-//
-//
-//     // 클릭이나 검색을 하면 -> 필터
-//     let a = new Filter(data);
-//
-//
-//
-//     a.filterByTagName('윤');
-//     a.filterByNumberRange(1, 10, true);
-//     console.log(a.getCurrentData());
-//
-// });
-
-
-
