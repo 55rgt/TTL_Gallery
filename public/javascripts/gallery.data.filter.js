@@ -35,6 +35,13 @@ function Filter(originalText) {
         this.setCurrentData(data);
     };
 
+    /** consecutive: 첫번째에만 해당 */
+    this.filterByTagNames = function (names, consecutive) {
+        names.forEach(function (e, index) {
+            that.filterByTagName(e, index === 0 ? consecutive : true);
+        });
+    };
+
     this.filterByNumberRange = function (min, max, consecutive) {
 
         let data = arguments.length === 2 && !consecutive ? this.deepCopy(that.original) : this.deepCopy(that.current);
