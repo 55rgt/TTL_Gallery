@@ -1,4 +1,4 @@
-const filterNavigator = new function() {
+const filterNavigator = new function () {
     const $window = $(window);
     const $mainTitle = $('.main-title');
     const $filterNavigator = $('.filter-navigator');
@@ -8,7 +8,7 @@ const filterNavigator = new function() {
     /**
      * 홈페이지 스크롤 시 필터 네비바 제어
      */
-    $window.scroll(function() {
+    $window.scroll(function () {
 
         const headerHeight = 56 + $mainTitle.height();
 
@@ -24,9 +24,10 @@ const filterNavigator = new function() {
             // 스크롤이 하위에 있을 때
             if (scrollPosition === 'up') {
                 $filterNavigator.css(
-                    {'position': 'fixed',
-                        'top' : 0,
-                        'width' : $filterNavigator.parent().width()
+                    {
+                        'position': 'fixed',
+                        'top': 0,
+                        'width': $filterNavigator.parent().width()
                     });
 
                 scrollPosition = 'down';
@@ -43,12 +44,12 @@ const filterNavigator = new function() {
 
         if ($window.scrollTop() > headerHeight) {
             $filterNavigator.css({
-                    'width' : $filterNavigator.parent().width()
-                });
+                'width': $filterNavigator.parent().width()
+            });
         }
         else {
             $filterNavigator.css({
-               'width' : '100%'
+                'width': '100%'
             });
         }
     });
@@ -60,50 +61,47 @@ const filterNavigator = new function() {
     const $tagZone = $('.tag-zone');
     const tagArray = [];
 
-    $searchInput.on('keyup', function(event) {
 
-        if (event.keyCode === 13 && $searchInput.val() !== '' &&
-        !tagArray.includes($searchInput.val()) && tagArray.length < 6) {
+    $.getJSON('../data/gallery.json', function (data) {
 
-            const template = `<div class='tag'>#${$searchInput.val()}</div>`;
+        // 클릭이나 검색을 하면 -> 필터
+        let filter = new Filter(data);
+        $searchInput.on('keyup', function (event) {
 
-            $tagZone.append(template);
+            if (event.keyCode === 13 && $searchInput.val() !== '' &&
+                !tagArray.includes($searchInput.val()) && tagArray.length < 6) {
 
-            tagArray.push($searchInput.val());
+                const template = `<div class='tag'>${$searchInput.val()}</div>`;
 
+                $tagZone.append(template);
 
-            $.getJSON('../data/gallery.json', function(data) {
-
-                // 클릭이나 검색을 하면 -> 필터
-                let a = new Filter(data);
-
+                tagArray.push($searchInput.val());
 
 
-                a.filterByTagName('윤');
-                a.filterByNumberRange(1, 10, true);
-                console.log(a.getCurrentData());
-
-            });
+                filter.filterByTagName($searchInput.val());
+                console.log(filter.getCurrentData());
 
 
-            $searchInput.val('');
+                $searchInput.val('');
 
-            /**
-             * 태그들
-             */
-            const $tags = $('.tag');
+                /**
+                 * 태그들
+                 */
+                const $tags = $('.tag');
 
-            $tags.unbind();
+                $tags.unbind();
 
-            $tags.on('click', function() {
-                const $this = $(this);
+                $tags.on('click', function () {
+                    const $this = $(this);
 
-                $this.remove();
-            });
-        }
+
+
+                    $this.remove();
+                });
+            }
+        });
+
     });
-
-
 
 
     /**
@@ -111,7 +109,7 @@ const filterNavigator = new function() {
      */
     const $toggleButton = $('label.switch > input');
 
-    $toggleButton.on('click', function() {
+    $toggleButton.on('click', function () {
         if ($toggleButton.is(':checked')) {
             // 버튼이 오른쪽에 있을 때
         }
