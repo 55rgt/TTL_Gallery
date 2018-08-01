@@ -58,6 +58,8 @@ const filterNavigator = new function () {
      * 검색창
      */
     const $searchInput = $('input.form-control.mr-sm-2');
+    const $minInput = $('input.min');
+    const $maxInput = $('input.max');
     const $tagZone = $('.tag-zone');
     const tagArray = [];
 
@@ -65,7 +67,7 @@ const filterNavigator = new function () {
     $.getJSON('../data/gallery.json', function (data) {
 
         // 클릭이나 검색을 하면 -> 필터
-        let filter = new Filter(data);
+        let filterReceiver = new FilterReceiver(data);
         $searchInput.on('keyup', function (event) {
 
 
@@ -79,10 +81,12 @@ const filterNavigator = new function () {
 
                 tagArray.push($searchInput.val().trim());
 
+                filterReceiver.setTags(tagArray);
+                console.log(filterReceiver.getTags());
 
-                filter.filterByTagName($searchInput.val().trim());
-                console.log(filter.getCurrentData());
-
+                filterReceiver.setValue(parseInt($minInput.val()), parseInt($maxInput.val()));
+                filterReceiver.updateFilter();
+                console.log(filterReceiver.getFilteredData());
 
                 $searchInput.val('');
 
@@ -100,9 +104,9 @@ const filterNavigator = new function () {
                     console.log(tagArray);
                     $this.remove();
 
-                    if(tagArray.length === 0) filter.resetData();
-                    else filter.filterByTagNames(tagArray, false);
-                    console.log(filter.getCurrentData());
+                    if(tagArray.length === 0) filterReceiver.getFilter().resetData();
+                    else filterReceiver.getFilter().filterByTagNames(tagArray, false);
+                    console.log(filterReceiver.getFilter().getCurrentData());
 
                 });
             }

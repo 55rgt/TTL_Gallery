@@ -37,6 +37,7 @@ function Filter(originalText) {
 
     /** consecutive: 첫번째에만 해당 */
     this.filterByTagNames = function (names, consecutive) {
+
         names.forEach(function (e, index) {
             that.filterByTagName(e, index === 0 ? consecutive : true);
         });
@@ -44,7 +45,7 @@ function Filter(originalText) {
 
     this.filterByNumberRange = function (min, max, consecutive) {
 
-        let data = arguments.length === 2 && !consecutive ? this.deepCopy(that.original) : this.deepCopy(that.current);
+        let data = arguments.length === 3 && !consecutive ? this.deepCopy(that.original) : this.deepCopy(that.current);
         data = _.filter(data, function (ele) {
             return parseInt(ele.numberOfPeople) >= min && parseInt(ele.numberOfPeople) <= max;
         });
