@@ -70,17 +70,17 @@ const filterNavigator = new function () {
 
 
 
-            if (event.keyCode === 13 && $searchInput.val() !== '' &&
-                !tagArray.includes($searchInput.val()) && tagArray.length < 6) {
+            if (event.keyCode === 13 && $searchInput.val().trim() !== '' &&
+                !tagArray.includes($searchInput.val().trim()) && tagArray.length < 6) {
 
-                const template = `<div class='tag'>${$searchInput.val()}</div>`;
+                const template = `<div class='tag'>${$searchInput.val().trim()}</div>`;
 
                 $tagZone.append(template);
 
-                tagArray.push($searchInput.val());
+                tagArray.push($searchInput.val().trim());
 
 
-                filter.filterByTagName($searchInput.val());
+                filter.filterByTagName($searchInput.val().trim());
                 console.log(filter.getCurrentData());
 
 
