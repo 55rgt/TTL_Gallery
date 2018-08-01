@@ -107,7 +107,12 @@ const filterNavigator = new function () {
                     if(tagArray.length === 0) filterReceiver.getFilter().resetData();
                     else filterReceiver.getFilter().filterByTagNames(tagArray, false);
                     console.log(filterReceiver.getFilter().getCurrentData());
-
+                    
+                    console.log("dddd")
+                    console.log($('.gallery'));
+                    //$('.gallery').remove();
+                    // dataLayout.setFile(filterReceiver.getFilter().getCurrentData());
+                    
                 });
             }
         });
