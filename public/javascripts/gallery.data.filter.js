@@ -5,7 +5,7 @@
         let that = this;
 
         this.original = originalText;
-        this.current = that.original;
+        this.current = this.deepCopy(that.original);
 
         this.resetData = function(){
             this.current = this.deepCopy(this.original);

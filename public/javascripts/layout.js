@@ -71,6 +71,21 @@ const filterNavigator = new function() {
 
             tagArray.push($searchInput.val());
 
+
+            $.getJSON('../data/gallery.json', function(data) {
+
+                // 클릭이나 검색을 하면 -> 필터
+                let a = new Filter(data);
+
+
+
+                a.filterByTagName('윤');
+                a.filterByNumberRange(1, 10, true);
+                console.log(a.getCurrentData());
+
+            });
+
+
             $searchInput.val('');
 
             /**
@@ -87,6 +102,7 @@ const filterNavigator = new function() {
             });
         }
     });
+
 
 
 
