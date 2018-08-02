@@ -183,9 +183,9 @@ function Element(data) {
   $ele.find('img').attr('src', '../images/medium/' + data.mediumFileName);
 
   let $img = $('img');
+  let $tagsContents = $('.main-tags-contents');
   
-  
-  $('.main-tags-contents').on('mousedown', function(){
+  $tagsContents.on('mousedown', function(){
     $(this).css('pointer-events', 'none');
   });
   
