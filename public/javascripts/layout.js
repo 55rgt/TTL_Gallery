@@ -64,23 +64,36 @@ const filterNavigator = new function () {
      * scroll-filter
      */
     const $scrollZone = $('.scroll-filter');
-    const min = 0;
-    const max = 20;
-    const slider = new Slider($scrollZone, min, max);
 
-
+    let slider;
 
     /**
      * 검색창
      */
     const $searchInput = $('input.form-control.mr-sm-2');
-    const $minInput = $('input.min');
-    const $maxInput = $('input.max');
     const $tagZone = $('.tag-zone');
     const tagArray = [];
 
 
     $.getJSON('../data/gallery.json', function (data) {
+
+
+        let min = 10000, max = -1;
+
+        _.forEach(JSON.parse(JSON.stringify(data)), function (v) {
+
+            if(parseInt(v.numberOfPeople) < min) min = parseInt(v.numberOfPeople);
+            if(parseInt(v.numberOfPeople) > max) max = parseInt(v.numberOfPeople);
+
+        });
+
+
+        slider = new Slider($scrollZone, min, max);
+
+
+        slider.on('mousedown', function (e) {
+
+        });
 
         // 클릭이나 검색을 하면 -> 필터
         let filterReceiver = new FilterReceiver(data);

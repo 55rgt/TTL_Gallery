@@ -3,10 +3,10 @@ const Slider = function ($root, min, max) {
     const temp = $root.append(`
         <div class="slider-zone">
             <div class="bar">
-                <div class="circle left">
-                <div class="circle-number">0</div>
+                <div class="circle-left circle left">
+                <div class="circle-number">${min}</div>
 </div>
-                <div class="circle right"><div class="circle-number">20</div></div>
+                <div class="circle-right circle right"><div class="circle-number">${max}</div></div>
             </div>
 
         </div>`);
