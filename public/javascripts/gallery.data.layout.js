@@ -191,6 +191,8 @@ function Element(data) {
   
   
   $img.off().on('mouseup', function () {
+
+      $($tagsContents).css('pointer-events', 'auto');
       console.log('clicked');
       window.open(this.src);
   });
