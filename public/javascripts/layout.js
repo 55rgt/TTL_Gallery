@@ -2,6 +2,7 @@ const filterNavigator = new function () {
   const $window = $(window);
   const $mainTitle = $('.main-title');
   const $filterNavigator = $('.filter-navigator');
+  const $gallery = $('.gallery');
   
   let scrollPosition = 'up';
   
@@ -10,12 +11,13 @@ const filterNavigator = new function () {
    */
   $window.scroll(function () {
     
-    const headerHeight = 56 + $mainTitle.height();
+    const headerHeight = $mainTitle.height();
     
     if ($window.scrollTop() < headerHeight) {
       // 스크롤이 상위에 있을 때
       if (scrollPosition === 'down') {
         $filterNavigator.css('position', 'static');
+          $gallery.css("margin-top", "0");
         
         scrollPosition = 'up';
       }
@@ -29,7 +31,8 @@ const filterNavigator = new function () {
             'top': 0,
             'width': $filterNavigator.parent().width()
           });
-        
+        $gallery.css("margin-top", `${$filterNavigator.height()}px`);
+        console.log($filterNavigator.height());
         scrollPosition = 'down';
       }
     }
