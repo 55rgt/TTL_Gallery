@@ -91,10 +91,6 @@ const filterNavigator = new function () {
         slider = new Slider($scrollZone, min, max);
 
 
-        slider.on('mousedown', function (e) {
-
-        });
-
         // 클릭이나 검색을 하면 -> 필터
         let filterReceiver = new FilterReceiver(data);
         $searchInput.on('keyup', function (event) {
