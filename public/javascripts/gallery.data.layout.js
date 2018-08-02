@@ -123,19 +123,22 @@ const dataLayout = new function () {
   this.setFile = (json) => {
     mainElements = [];
     file = [];
-    file = json;
-    this.firstLayout();
+    file = JSON.parse(JSON.stringify(json));
+    this.firstLayout(file.length);
   };
   
-  this.firstLayout = () => {
-    for (let i = 0; i < 30; i++) {
+  this.firstLayout = (length) => {
+
+    let maxIndex = length < 30 ? length : 30;
+
+    for (let i = 0; i < maxIndex; i++) {
       mainElements.push(new Element(file[i]));
     }
   };
   
   $(window).scroll(function () {
-    var scrollHeight = $(document).height();
-    var scrollPosition = $(window).height() + $(window).scrollTop();
+    let scrollHeight = $(document).height();
+    let scrollPosition = $(window).height() + $(window).scrollTop();
     if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
       const count = mainElements.length;
       for (let i = 0; i < 30; i++) {
@@ -168,20 +171,25 @@ const listTemplate = `<div class="list-view">
 
 
 function Element(data) {
-  
+
+  console.log(data);
   const $ele = $(mainTemplate);
-  
+
   $ele.find('img').attr('src', '../images/medium/' + data.mediumFileName);
-  
-  // $ele.find('.background').css('background-image', 'url(../images/medium/' + data.mediumFileName + ')');
+
+  let $img = $('img');
+
+  $img.on('click', function () {
+      console.log('clicked');
+      window.open(this.src);
+  });
   
   $row.append($ele).masonry('appended', $ele);
   
   const rowWidth = Number($('.gallery').width());
   
   const unit = Math.floor(rowWidth / 6);
-  
-  
+
   if (Number(data.numberOfPeople) < 4) {
     $ele.css('max-width', `${unit}px`);
   }
@@ -205,8 +213,7 @@ function Element(data) {
     $ele.find('img').css('height', `${unit * 2}px`);
     // $ele.find('.card-img-top').css('max-height', width * (2 / 3) + 'px !important');
   }
-  
-  
+
   
   
   const $listEle = $(listTemplate);
@@ -258,6 +265,8 @@ function Element(data) {
 $row.imagesLoaded().progress(function () {
   $row.masonry('layout');
 });
+
+
 
 
 //
