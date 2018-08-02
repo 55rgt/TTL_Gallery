@@ -48,11 +48,11 @@ const Slider = function ($root, min, max) {
     // };
 
 
+
     this.getLeftValue = function () {
         console.log(points);
         const $left = $('.circle:first');
         for(let i = min; i < points.length; i++) {
-            console.log('aa', $left.position().left + $bar.position().left, points[i]);
 
             if($left.position().left + $bar.position().left - points[i] <= 0) {
                 return i;
@@ -86,9 +86,7 @@ const Slider = function ($root, min, max) {
 
     });
 
-
-
-    $(document).on('mouseup', function (event) {
+    this.mouseUp = function () {
         const $drag = $('#drag');
         $drag.off('mousemove');
         $drag.attr('id', '');
@@ -114,8 +112,9 @@ const Slider = function ($root, min, max) {
             $drag.find('.circle-number').text(`${points.length-1}`);
 
         }
+    };
 
-    });
+
 
 
     return this;
