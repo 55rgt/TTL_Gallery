@@ -1,40 +1,40 @@
-
 const Slider = function ($root, min, max) {
     const temp = $root.append(`
         <div class="slider-zone">
             <div class="bar">
-                <div class="circle-left circle left">
-                <div class="circle-number">${min}</div>
-</div>
-                <div class="circle-right circle right"><div class="circle-number">${max}</div></div>
+                <div class="circle-left circle left" pos="left">
+                    <div class="circle-number"></div>
+                </div>
+                <div class="circle-right circle right" pos="right">
+                    <div class="circle-number"></div>
+                </div>
             </div>
         </div>
     <div class="number-zone">
-        <div class="number left"></div>
+        <div class="number left">${min}</div>
         <div class="empty-zone"></div>
-        <div class="number right"></div>
+        <div class="number right">${max}</div>
     </div>
 `);
 
-    const points = [];
-    let count;
-
     const $bar = $(temp.find('.bar'));
+    const $circle = $(temp.find('.circle'));
 
+    const points = [];
+    const count = max - min + 1;
 
 
     const setPoints = function () {
-        count = max - min + 1;
-        for(let i = 0; i < count; i++) {
-            points.push($bar.position().left + ($bar.width()/count)*i);
+        for (let i = min; i < max + 1; i++) {
+            points[i] = ($bar.position().left + ($bar.width() / count) * (i - min));
         }
 
     };
     setPoints();
 
     const setLine = () => {
-        for(let i = 0; i < points.length; i++) {
-            $bar.append(`<div class="line" style="left:${points[i]}px"></div>`);
+        for (let i = min; i < max + 1; i++) {
+            $bar.append(`<div class="line" style="left:${points[i] - points[min]}px"></div>`);
         }
     };
     setLine();
@@ -61,40 +61,71 @@ const Slider = function ($root, min, max) {
     // };
 
 
-
     this.getLeftValue = function () {
-        console.log(points);
         const $left = $('.circle:first');
-        for(let i = min; i < points.length; i++) {
-
-            if($left.position().left + $bar.position().left - points[i] <= 0) {
-                return i;
+        for (let i = min; i < max + 1; i++) {
+            if ($left.position().left + $bar.position().left - points[i] <= 0) {
+                return i - 1;
             }
         }
+        return max;
     };
     this.getRightValue = () => {
         const $right = $('.circle:last');
-        for(let i = min; i < points.length; i++) {
-            if($right.position().left + $bar.position().left - points[i] === 0) {
-                return i;
-            }
-            else if($right.position().left + $bar.position().left - points[i] < 0) {
-                return i;
+        for (let i = min; i < max + 1; i++) {
+            if ($right.position().left + $bar.position().left - points[i] <= 0) {
+                return i - 1;
             }
         }
+        return max;
 
     };
 
-    const $circle = $(temp.find('.circle'));
     $circle.on('mousedown', function () {
         const dragItem = $(this);
         dragItem.attr('id', 'drag');
+        const $drag = $('#drag');
 
 
         dragItem.on('mousemove', function (event) {
-            if(event.clientX > $bar.position().left && event.clientX < $bar.position().left + $bar.width()) {
-                $(this).css('left', `${event.clientX - $circle.width()/2 - $bar.position().left}px`);
+            if (event.clientX > $bar.position().left && event.clientX < $bar.position().left + $bar.width()) {
+                $(this).css('left', `${event.clientX - $circle.width() / 2 - $bar.position().left}px`);
             }
+
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+            // if(mouseY > $bar.position().top && mouseY < $bar.position().top + $bar.height()) {
+            if (mouseX < points[min]) {
+                if ($drag.attr('pos') === 'left') {
+                    temp.find('.number-zone>.left').text(`${min}`);
+                }
+                else {
+                    temp.find('.number-zone>.right').text(`${min}`);
+                }
+
+            }
+
+            else if (mouseX > points[min] && mouseX < points[max]) {
+                for (let i = min; i < max + 1; i++) {
+                    if (mouseX > points[i] && mouseX < points[i + 1]) {
+                        if ($drag.attr('pos') === 'left') {
+                            temp.find('.number-zone>.left').text(`${i}`);
+                        }
+                        else {
+                            temp.find('.number-zone>.right').text(`${i}`);
+                        }
+                    }
+                }
+            }
+            else {
+                if ($drag.attr('pos') === 'left') {
+                    temp.find('.number-zone>.left').text(`${max}`);
+                }
+                else {
+                    temp.find('.number-zone>.right').text(`${max}`);
+                }
+            }
+            // }
         });
 
     });
@@ -104,31 +135,45 @@ const Slider = function ($root, min, max) {
         $drag.off('mousemove');
         $drag.attr('id', '');
 
-        const mouseX = event.clientX;
-
-        if(mouseX < points[0]) {
-            $drag.css('left', `${points[0] - $bar.position().left + $bar.width()/(count*2) -$circle.width()/2}px`);
-            $drag.find('.circle-number').text(`0`);
-
-        }
-
-        else if(mouseX > points[0] && mouseX < points[points.length-1]) {
-            for(let i = 0; i< points.length-1; i++) {
-                if(mouseX > points[i] && mouseX < points[i+1]) {
-                    $drag.css('left', `${points[i] - $bar.position().left + $bar.width()/(count*2) -$circle.width()/2}px`);
-                    $drag.find('.circle-number').text(`${i}`);
-                }
-            }
-        }
-        else {
-            $drag.css('left', `${points[points.length-1] - $bar.position().left + $bar.width()/(count*2) -$circle.width()/2}px`);
-            $drag.find('.circle-number').text(`${points.length-1}`);
-
-        }
+        // const mouseX = event.clientX;
+        // const mouseY = event.clientY;
+        // // if(mouseY > $bar.position().top && mouseY < $bar.position().top + $bar.height()) {
+        //     if (mouseX < points[min]) {
+        //         $drag.css('left', `${points[min] - $bar.position().left + $bar.width() / (count * 2) - $circle.width() / 2}px`);
+        //         // if ($drag.attr('pos') === 'left') {
+        //         //     temp.find('.number-zone>.left').text(`${min}`);
+        //         // }
+        //         // else {
+        //         //     temp.find('.number-zone>.right').text(`${min}`);
+        //         // }
+        //
+        //     }
+        //
+        //     else if (mouseX > points[min] && mouseX < points[max]) {
+        //         for (let i = min; i < max + 1; i++) {
+        //             if (mouseX > points[i] && mouseX < points[i + 1]) {
+        //                 $drag.css('left', `${points[i] - $bar.position().left + $bar.width() / (count * 2) - $circle.width() / 2}px`);
+        //                 // if ($drag.attr('pos') === 'left') {
+        //                 //     temp.find('.number-zone>.left').text(`${i}`);
+        //                 // }
+        //                 // else {
+        //                 //     temp.find('.number-zone>.right').text(`${i}`);
+        //                 // }
+        //             }
+        //         }
+        //     }
+        //     else {
+        //         $drag.css('left', `${points[max] - $bar.position().left + $bar.width() / (count * 2) - $circle.width() / 2}px`);
+        //         // if ($drag.attr('pos') === 'left') {
+        //         //     temp.find('.number-zone>.left').text(`${max}`);
+        //         // }
+        //         // else {
+        //         //     temp.find('.number-zone>.right').text(`${max}`);
+        //         // }
+        //     }
+        // // }
     };
 
 
-
-gi
     return this;
 };
