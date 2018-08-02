@@ -171,7 +171,7 @@ const listTemplate = `<div class="list-view">
     <img class="img picture" alt="Card image cap" />
     <div class="filename"></div>
     <div class="tags"></div>
-</div>`;
+</div> <div class = "list-line"></div>`;
 
 
 
