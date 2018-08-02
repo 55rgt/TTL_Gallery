@@ -90,6 +90,23 @@ const filterNavigator = new function () {
 
         slider = new Slider($scrollZone, min, max);
 
+        $(document).on('mouseup', function (event) {
+
+            let left = slider.getLeftValue();
+            let right = slider.getRightValue();
+
+            slider.mouseUp(event);
+            filterReceiver.setValue(slider.getLeftValue(), slider.getRightValue());
+            filterReceiver.updateFilter();
+
+            if(left !== slider.getLeftValue() || right !== slider.getRightValue()) {
+
+                $('.main-mode').empty();
+                $('.list-mode').empty();
+                dataLayout.setFile(filterReceiver.getFilter().getCurrentData());
+            }
+        });
+
 
         // 클릭이나 검색을 하면 -> 필터
         let filterReceiver = new FilterReceiver(data);
