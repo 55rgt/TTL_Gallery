@@ -16,13 +16,13 @@
       cursor: pointer
 
       width: 100%
-      box-shadow: 0 0 10px 10px rgb(0, 0, 0) inset
+      //box-shadow: 0 0 10px 10px rgb(0, 0, 0) inset
 
       //color: rgba(255, 255, 255, 0.7)
       text-align: center
-      font-style: italic
+      //font-style: italic
 
-      font-family: 'Merienda', cursive
+      //font-family: 'Merienda', cursive
 
       .swiper-container
         position: absolute
@@ -34,12 +34,12 @@
         margin-right: auto
         pointer-events: all
         cursor: pointer
-        opacity: 0.5
+        opacity: 0.8
 
       .swiper-slide
         text-align: center
         font-size: 18px
-        background: #fff
+        background: black
         /* Center slide text vertically
         display: -webkit-box
         display: -ms-flexbox
@@ -87,7 +87,10 @@
       margin: 10px 0
       padding: 0 15px
 
-      background-color: antiquewhite
+      background-color: white
+      //border-top : 2px solid #cccccc
+      border-bottom: 1px solid #ddd
+      //box-shadow: 0 3px 10px 0
       z-index: 1000
 
       // Search
@@ -95,6 +98,8 @@
         margin-left: 20px
         .none
           display: none
+        input
+          outline: none
 
       // Tags
       .tag-zone
@@ -114,7 +119,7 @@
         position: relative
         display: inline-block
         width: 60px
-        height: 34px
+        height: 30px
         margin-top: 5px
         input
           display: none
@@ -125,14 +130,14 @@
           left: 0
           right: 0
           bottom: 0
-          background-color: #2196F3
+          background-color: #222222
           -webkit-transition: .4s
           transition: .4s
           &:before
             position: absolute
             content: ""
-            height: 26px
-            width: 26px
+            height: 22px
+            width: 22px
             left: 4px
             bottom: 4px
             background-color: white
@@ -140,13 +145,13 @@
             transition: .4s
         input
           &:checked + .slider
-            background-color: #2196F3
+            background-color: #222222
           &:focus + .slider
             box-shadow: 0 0 1px #2196F3
           &:checked + .slider:before
-            -webkit-transform: translateX(26px)
-            -ms-transform: translateX(26px)
-            transform: translateX(26px)
+            -webkit-transform: translateX(30px)
+            -ms-transform: translateX(30px)
+            transform: translateX(30px)
         /* Rounded sliders
         .slider.round
           border-radius: 34px
@@ -194,3 +199,8 @@
   .main-title
     height: 150px
     font-size: 1rem
+
+
+
+.swiper-color
+  filter: brightness(0)
