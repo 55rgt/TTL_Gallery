@@ -9,13 +9,70 @@
       display: flex
       align-items: center
       justify-content: center
+      position: relative
+      pointer-events: none
 
       width: 100%
+      height: 450px
 
+      color: rgba(255, 255, 255, 0.7)
       text-align: center
       font-style: italic
 
       font-family: 'Merienda', cursive
+
+      .swiper-container
+        pointer-events: all
+        z-index: -1000
+        position: absolute
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
+        margin-left: auto
+        margin-right: auto
+
+      .swiper-slide
+        text-align: center
+        font-size: 18px
+        background: #fff
+        /* Center slide text vertically
+        display: -webkit-box
+        display: -ms-flexbox
+        display: -webkit-flex
+        display: flex
+        -webkit-box-pack: center
+        -ms-flex-pack: center
+        -webkit-justify-content: center
+        justify-content: center
+        -webkit-box-align: center
+        -ms-flex-align: center
+        -webkit-align-items: center
+        align-items: center
+
+      img
+        background-color: yellow
+        width: 100%
+        height: 100%
+
+      #group-image
+        background: url("../images/medium/2A7A6122_medium.jpg") no-repeat
+        background-position: 0 73%
+        background-size: 100% auto
+
+      #group-image2
+        background: url("../images/medium/2A7A6097_medium.jpg") no-repeat
+        background-position: 0 76%
+        background-size: 100% auto
+
+      #group-seated
+        background: url("../images/medium/20180717_134356_medium.jpg") no-repeat center
+        background-size: 100% auto
+
+      #group-water
+        background: url("../images/medium/20180717_173151_medium.jpg") no-repeat
+        background-position: 0 60%
+        background-size: 100% auto
 
     .filter-navigator
       display: flex
