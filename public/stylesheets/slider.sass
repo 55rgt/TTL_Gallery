@@ -1,0 +1,37 @@
+
+.slider-zone
+  width: 300px
+  height: 50px
+  margin: auto
+  display: flex
+  justify-content: center
+  align-items: center
+  .bar
+    width: 95%
+    height: 30%
+    border: solid 1px #eeeeee
+    border-radius: 12px
+    display: flex
+    position: relative
+    box-shadow: 0 4px 4px 0 rgba(139, 139, 139, 0.18)
+
+    .circle
+      position: absolute
+      width: 20px
+      height: 20px
+      border-radius: 50%
+      background: rgba(0, 131, 183, 0.85)
+      top: -4px
+      z-index: 3
+      box-shadow: 0 4px 4px 0 rgba(51, 100, 139, 0.18)
+
+      &:hover
+        cursor: pointer
+      &.left
+        left: 0
+      &.right
+        right: 0
+      .circle-number
+        color: white
+        font-size: 15px
+        text-align: center

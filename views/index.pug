@@ -2,6 +2,8 @@ extends layout
 
 block link
     link(href='/stylesheets/index.css' rel='stylesheet')
+    link(rel="stylesheet", href="/stylesheets/slider.css")
+
 
 block content
     .main-grid
@@ -23,8 +25,8 @@ block content
                     .swiper-button-prev
             .filter-navigator
                 .scroll-filter
-                    input(type="text" placeholder="min").min
-                    input(type="text" placeholder="max").max
+                    //input(type="text" placeholder="min").min
+                    //input(type="text" placeholder="max").max
                 form.form-inline.my-2.my-lg-0
                     input.form-control.mr-sm-2(type='text' placeholder='Search' aria-label='Search')
                     input.none
@@ -44,6 +46,9 @@ block content
         .empty-flex-column
 
 
+    script(src='/javascripts/gallery.slider.js')
+
+    script(src='/javascripts/layout.js')
 
 
 
