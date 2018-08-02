@@ -88,11 +88,12 @@ const filterNavigator = new function () {
         console.log(filterReceiver.getFilteredData());
         
         $searchInput.val('');
-  
-        $('.gallery').empty();
-        dataLayout.setFile(filterReceiver.getFilter().getCurrentData());
-  
-  
+        
+        $('.main-mode').empty();
+        $('.list-mode').empty();
+        dataLayout.setFile(filterReceiver.getFilteredData());
+        
+        
         /**
          * 태그들
          */
@@ -110,9 +111,10 @@ const filterNavigator = new function () {
           if (tagArray.length === 0) filterReceiver.getFilter().resetData();
           else filterReceiver.getFilter().filterByTagNames(tagArray, false);
           // console.log(filterReceiver.getFilter().getCurrentData());
-          
-          
-          $('.gallery').empty();
+  
+  
+          $('.main-mode').empty();
+          $('.list-mode').empty();
           dataLayout.setFile(filterReceiver.getFilter().getCurrentData());
           
         });
@@ -124,15 +126,33 @@ const filterNavigator = new function () {
    * 토글 스위치 버튼
    */
   const $toggleButton = $('label.switch > input');
+  const $pinterest = $('.main-mode');
+  const $list = $('.list-mode');
   
   $toggleButton.on('click', function () {
     if ($toggleButton.is(':checked')) {
-      // 버튼이 오른쪽에 있을 때
+      
+      if (!$pinterest.hasClass('display-none'))
+        $pinterest.addClass('display-none');
+      
+      if ($list.hasClass('display-none'))
+        $list.removeClass('display-none');
     }
     else {
-      // 버튼이 왼쪽에 있을 때
+      
+      if (!$list.hasClass('display-none'))
+        $list.addClass('display-none');
+      
+      if ($pinterest.hasClass('display-none'))
+        $pinterest.removeClass('display-none');
     }
-  })
+  
+    $('.main-mode').imagesLoaded().progress(function () {
+      $('.main-mode').masonry('layout');
+    });
+    
+  });
+  
   
 };
 

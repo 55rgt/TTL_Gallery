@@ -104,7 +104,7 @@
 //   });
 // }
 
-let $row = $('.gallery').masonry({
+let $row = $('.main-mode').masonry({
   // set itemSelector so .grid-sizer is not used in layout
   itemSelector: '.col-md-4',
   // // use element for option
@@ -113,21 +113,24 @@ let $row = $('.gallery').masonry({
   percentPosition: true
 });
 
-const dataLayout = new function() {
+const $list = $('.list-mode');
+
+
+const dataLayout = new function () {
   
   let file = [];
-  let elements = [];
-  
+  let mainElements = [];
+  // let listElements = [];
   this.setFile = (json) => {
-    elements = [];
+    mainElements = [];
     file = [];
     file = json;
     this.firstLayout();
   };
   
-  this.firstLayout = () =>{
-    for(let i = 0; i < 30; i++){
-      elements.push(new Element(file[i]));
+  this.firstLayout = () => {
+    for (let i = 0; i < 30; i++) {
+      mainElements.push(new Element(file[i]));
     }
   };
   
@@ -135,10 +138,10 @@ const dataLayout = new function() {
     var scrollHeight = $(document).height();
     var scrollPosition = $(window).height() + $(window).scrollTop();
     if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
-      const count = elements.length;
+      const count = mainElements.length;
       for (let i = 0; i < 30; i++) {
-        if (elements.length < file.length)
-          elements.push(new Element(file[count + i]));
+        if (mainElements.length < file.length)
+          mainElements.push(new Element(file[count + i]));
       }
     }
   });
@@ -161,15 +164,22 @@ $.getJSON('/data/gallery.json', function (json) {
 });
 
 
-const template = `<div class="col-md-4 padding-0">
+const mainTemplate = `<div class="col-md-4 padding-0">
     <div class="card mb-4 box-shadow margin-0 border-0"><img class="card-img-top background border" />
     </div>
 </div>`;
 
+const listTemplate = `<div class="list-view">
+    <img class="picture" alt="Card image cap" />
+    <div class="filename"></div>
+    <div class="tags"></div>
+</div>`;
+
+
+
 function Element(data) {
   
-  const $ele = $(template);
-  this.$ele = $ele;
+  const $ele = $(mainTemplate);
   
   $ele.find('.background').css('background-image', 'url(../images/medium/' + data.mediumFileName + ')');
   
@@ -177,7 +187,7 @@ function Element(data) {
   
   $row.append($ele).masonry('appended', $ele);
   
-  const rowWidth = Number($row.width());
+  const rowWidth = Number($('.gallery').width());
   
   const unit = Math.floor(rowWidth / 6);
   
@@ -205,6 +215,26 @@ function Element(data) {
     $ele.find('img').css('height', `${unit * 2}px`);
     // $ele.find('.card-img-top').css('max-height', width * (2 / 3) + 'px !important');
   }
+  
+  
+  
+  
+  const $listEle = $(listTemplate);
+  
+  $listEle.find('img').attr('src', '../images/small/' + data.smallFileName);
+  
+  $listEle.find('.filename').text(data.smallFileName);
+  // $ele.find('.text-muted').text(data.date);
+  // $ele.find('.btn-group').attr('href', data.siteUrl);
+  
+  $list.append($listEle);
+  
+  for (let i = 0; i < data.tags.length; i++) {
+    $listEle.find('.tags').append(`<div class = tag>${data.tags[i]}</div>`);
+  }
+  
+  
+  
   
   this.hasTag = (val) => {
     
@@ -239,4 +269,11 @@ $row.imagesLoaded().progress(function () {
   $row.masonry('layout');
 });
 
+
+//
+// function ListElement(data) {
+//
+//   return this;
+// }
+//
 
