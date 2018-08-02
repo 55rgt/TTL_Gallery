@@ -56,4 +56,13 @@
   border: 5px solid white;
   border-radius: 10px; }
 
+.display-none {
+  display: none; }
+
+.list-mode {
+  width: 100%; }
+
+.main-mode {
+  width: 100%; }
+
 /*# sourceMappingURL=addGallery.css.map */
