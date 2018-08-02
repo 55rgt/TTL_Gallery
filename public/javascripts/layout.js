@@ -5,19 +5,23 @@ const filterNavigator = new function () {
     const $gallery = $('.gallery');
 
     let scrollPosition = 'up';
+    const filterNavigatorMargin = 10;
 
     /**
      * 홈페이지 스크롤 시 필터 네비바 제어
      */
     $window.scroll(function () {
 
-        const headerHeight = $mainTitle.height();
+        const headerHeight = $mainTitle.height() + 10; // + margin-top
 
         if ($window.scrollTop() < headerHeight) {
             // 스크롤이 상위에 있을 때
             if (scrollPosition === 'down') {
-                $filterNavigator.css('position', 'static');
-                $gallery.css("margin-top", "0");
+                $filterNavigator.css({
+                    'position': 'static',
+                    'margin' : `${filterNavigatorMargin}px 0`
+                });
+                $gallery.css("margin", "0");
 
                 scrollPosition = 'up';
             }
@@ -29,10 +33,10 @@ const filterNavigator = new function () {
                     {
                         'position': 'fixed',
                         'top': 0,
-                        'width': $filterNavigator.parent().width()
+                        'width': $filterNavigator.parent().width(),
+                        'margin': 0
                     });
-                $gallery.css("margin-top", `${$filterNavigator.height()}px`);
-                console.log($filterNavigator.height());
+                $gallery.css("margin-top", `${$filterNavigator.height()+filterNavigatorMargin*2}px`);
                 scrollPosition = 'down';
             }
         }

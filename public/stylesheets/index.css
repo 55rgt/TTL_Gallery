@@ -12,7 +12,7 @@
       z-index: 10;
       cursor: pointer;
       width: 100%;
-      height: 450px;
+      box-shadow: 0 0 10px 10px black inset;
       text-align: center;
       font-style: italic;
       font-family: 'Merienda', cursive; }
@@ -68,10 +68,14 @@
       align-items: center;
       width: 100%;
       height: 80px;
+      margin: 10px 0;
+      padding: 0 15px;
       background-color: antiquewhite;
       z-index: 1000; }
-      .main-grid section .filter-navigator form.form-inline.my-2.my-lg-0 .none {
-        display: none; }
+      .main-grid section .filter-navigator form.form-inline.my-2.my-lg-0 {
+        margin-left: 20px; }
+        .main-grid section .filter-navigator form.form-inline.my-2.my-lg-0 .none {
+          display: none; }
       .main-grid section .filter-navigator .tag-zone {
         flex: 1;
         display: flex;
@@ -88,6 +92,7 @@
         display: inline-block;
         width: 60px;
         height: 34px;
+        margin-top: 5px;
         /* Rounded sliders */ }
         .main-grid section .filter-navigator .switch input {
           display: none; }
@@ -130,27 +135,27 @@
 
 @media screen and (min-width: 1200px) {
   .main-title {
-    height: 300px;
+    height: 450px;
     font-size: 5rem; } }
 
 @media screen and (max-width: 1200px) {
   .main-title {
-    height: 250px;
+    height: 400px;
     font-size: 4rem; } }
 
 @media screen and (max-width: 990px) {
   .main-title {
-    height: 200px;
+    height: 350px;
     font-size: 3rem; } }
 
 @media screen and (max-width: 767px) {
   .main-title {
-    height: 150px;
+    height: 200px;
     font-size: 2rem; } }
 
 @media screen and (max-width: 353px) {
   .main-title {
-    height: 100px;
+    height: 150px;
     font-size: 1rem; } }
 
 /*# sourceMappingURL=index.css.map */
