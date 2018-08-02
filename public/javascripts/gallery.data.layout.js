@@ -158,7 +158,10 @@ $.getJSON('/data/gallery.json', function (json) {
 
 
 const mainTemplate = `<div class="col-md-4 padding-0">
-    <div class="card mb-4 box-shadow margin-0 border-0"><img class="card-img-top background border"/>
+    <div class="card mb-4 box-shadow margin-0 border-0"><img class="img card-img-top background border" />
+        <div class="main-tags-contents opacity-0">
+            <div class="main-tags"></div>
+        </div>
     </div>
 </div>`;
 
@@ -213,7 +216,10 @@ function Element(data) {
     $ele.find('img').css('height', `${unit * 2}px`);
     // $ele.find('.card-img-top').css('max-height', width * (2 / 3) + 'px !important');
   }
-
+  
+  for (let i = 0; i < data.tags.length; i++) {
+    $ele.find('.main-tags').append(`<div class = main-tag>#${data.tags[i]}</div>`);
+  }
   
   
   const $listEle = $(listTemplate);
@@ -229,8 +235,6 @@ function Element(data) {
   for (let i = 0; i < data.tags.length; i++) {
     $listEle.find('.tags').append(`<div class = tag>${data.tags[i]}</div>`);
   }
-  
-  
   
   
   this.hasTag = (val) => {

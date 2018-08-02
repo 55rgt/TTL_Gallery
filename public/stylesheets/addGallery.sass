@@ -66,8 +66,36 @@
 .main-mode
   width: 100%
 
-.img
-  vertical-align: middle
-  border-style: none
-  page-break-inside: avoid
-  display: inline-block
+
+.main-tags
+  position: absolute
+  bottom: 0
+  left: 0
+  display: flex
+  flex-wrap: wrap
+  width: 100%
+
+.position-relative
+  position: relative
+
+
+.main-tags-contents
+  position: absolute
+  width: 100%
+  height: 100%
+  background: rgba(50,50,50, 0.4)
+  &:hover
+    opacity: 1
+
+.main-tag
+  margin: 8px
+  padding: 4px 8px
+  font-size: 12px
+  line-height: 22px
+  height: 30px
+  border: 1px solid white
+  color: white
+  border-radius: 10px
+
+.opacity-0
+  opacity: 0
