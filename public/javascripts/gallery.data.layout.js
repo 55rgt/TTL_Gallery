@@ -153,7 +153,7 @@ const dataLayout = new function () {
 $.getJSON('/data/gallery.json', function (json) {
 
   dataLayout.setFile(json);
-  
+
 });
 
 
@@ -177,7 +177,6 @@ const listTemplate = `<div class="list-view">
 
 function Element(data) {
 
-  console.log(data);
   const $ele = $(mainTemplate);
 
   $ele.find('img').attr('src', '../images/medium/' + data.mediumFileName);

@@ -38,6 +38,8 @@ function Filter(originalText) {
     /** consecutive: 첫번째에만 해당 */
     this.filterByTagNames = function (names, consecutive) {
 
+        if(names.length === 0) return;
+
         names.forEach(function (e, index) {
             that.filterByTagName(e, index === 0 ? consecutive : true);
         });

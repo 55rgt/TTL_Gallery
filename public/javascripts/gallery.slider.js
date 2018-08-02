@@ -3,8 +3,10 @@ const Slider = function ($root, min, max) {
     const temp = $root.append(`
         <div class="slider-zone">
             <div class="bar">
-                <div class="circle left"><div class="circle-number"></div></div>
-                <div class="circle right"><div class="circle-number"></div></div>
+                <div class="circle-left circle left">
+                <div class="circle-number">${min}</div>
+</div>
+                <div class="circle-right circle right"><div class="circle-number">${max}</div></div>
             </div>
         </div>
     <div class="number-zone">
@@ -59,11 +61,11 @@ const Slider = function ($root, min, max) {
     // };
 
 
+
     this.getLeftValue = function () {
         console.log(points);
         const $left = $('.circle:first');
         for(let i = min; i < points.length; i++) {
-            console.log('aa', $left.position().left + $bar.position().left, points[i]);
 
             if($left.position().left + $bar.position().left - points[i] <= 0) {
                 return i;
@@ -97,9 +99,7 @@ const Slider = function ($root, min, max) {
 
     });
 
-
-
-    $(document).on('mouseup', function (event) {
+    this.mouseUp = function () {
         const $drag = $('#drag');
         $drag.off('mousemove');
         $drag.attr('id', '');
@@ -125,9 +125,10 @@ const Slider = function ($root, min, max) {
             $drag.find('.circle-number').text(`${points.length-1}`);
 
         }
+    };
 
-    });
 
 
+gi
     return this;
 };

@@ -5,19 +5,23 @@ const filterNavigator = new function () {
     const $gallery = $('.gallery');
 
     let scrollPosition = 'up';
+    const filterNavigatorMargin = 10;
 
     /**
      * 홈페이지 스크롤 시 필터 네비바 제어
      */
     $window.scroll(function () {
 
-        const headerHeight = $mainTitle.height();
+        const headerHeight = $mainTitle.height() + 10; // + margin-top
 
         if ($window.scrollTop() < headerHeight) {
             // 스크롤이 상위에 있을 때
             if (scrollPosition === 'down') {
-                $filterNavigator.css('position', 'static');
-                $gallery.css("margin-top", "0");
+                $filterNavigator.css({
+                    'position': 'static',
+                    'margin' : `${filterNavigatorMargin}px 0`
+                });
+                $gallery.css("margin", "0");
 
                 scrollPosition = 'up';
             }
@@ -29,10 +33,10 @@ const filterNavigator = new function () {
                     {
                         'position': 'fixed',
                         'top': 0,
-                        'width': $filterNavigator.parent().width()
+                        'width': $filterNavigator.parent().width(),
+                        'margin': 0
                     });
-                $gallery.css("margin-top", `${$filterNavigator.height()}px`);
-                console.log($filterNavigator.height());
+                $gallery.css("margin-top", `${$filterNavigator.height()+filterNavigatorMargin*2}px`);
                 scrollPosition = 'down';
             }
         }
@@ -64,23 +68,49 @@ const filterNavigator = new function () {
      * scroll-filter
      */
     const $scrollZone = $('.scroll-filter');
-    const min = 0;
-    const max = 20;
-    const slider = new Slider($scrollZone, min, max);
 
-
+    let slider;
 
     /**
      * 검색창
      */
     const $searchInput = $('input.form-control.mr-sm-2');
-    const $minInput = $('input.min');
-    const $maxInput = $('input.max');
     const $tagZone = $('.tag-zone');
     const tagArray = [];
 
 
     $.getJSON('../data/gallery.json', function (data) {
+
+
+        let min = 10000, max = -1;
+
+        _.forEach(JSON.parse(JSON.stringify(data)), function (v) {
+
+            if(parseInt(v.numberOfPeople) < min) min = parseInt(v.numberOfPeople);
+            if(parseInt(v.numberOfPeople) > max) max = parseInt(v.numberOfPeople);
+
+        });
+
+
+        slider = new Slider($scrollZone, min, max);
+
+        $(document).on('mouseup', function (event) {
+
+            let left = slider.getLeftValue();
+            let right = slider.getRightValue();
+
+            slider.mouseUp(event);
+            filterReceiver.setValue(slider.getLeftValue(), slider.getRightValue());
+            filterReceiver.updateFilter();
+
+            if(left !== slider.getLeftValue() || right !== slider.getRightValue()) {
+
+                $('.main-mode').empty();
+                $('.list-mode').empty();
+                dataLayout.setFile(filterReceiver.getFilter().getCurrentData());
+            }
+        });
+
 
         // 클릭이나 검색을 하면 -> 필터
         let filterReceiver = new FilterReceiver(data);
