@@ -1,26 +1,24 @@
-$.getJSON('/data/gallery.json', function (json) {
-  
-  let elements = [];
-  
-  elements = _.map(json, (d) => new Element(d));
-  
-  // for (let i = 0; i < 60; i++) {
-  //   elements.push(new Element(json[i]));
-  // }
-  
-});
+// $.getJSON('/data/gallery.json', function (json) {
+//
+//   let elements = _.map(json, (d) => new ListElement(d));
+//
+//   // for (let i = 0; i < 60; i++) {
+//   //   elements.push(new Element(json[i]));
+//   // }
+//   console.log('sss');
+// });
 
 
-const template = `<div class="list-view">
+const listTemplate = `<div class="list-view">
     <img class="picture" alt="Card image cap" />
     <div class="filename"></div>
     <div class="tags"></div>
 </div>`;
 
-const $gallery = $('.gallery');
-function Element(data) {
+const $list = $('.list-mode');
+function ListElement(data) {
   
-  const $ele = $(template);
+  const $ele = $(listTemplate);
   
   $ele.find('img').attr('src', '../images/small/' + data.smallFileName);
   
@@ -28,10 +26,9 @@ function Element(data) {
   // $ele.find('.text-muted').text(data.date);
   // $ele.find('.btn-group').attr('href', data.siteUrl);
   
+  $list.append($ele);
   
-  $gallery.append($ele);
   for (let i = 0; i < data.tags.length; i++) {
-    console.log(data.tags[i]);
     $ele.find('.tags').append(`<div class = tag>${data.tags[i]}</div>`);
   }
   
