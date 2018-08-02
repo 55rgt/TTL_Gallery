@@ -115,7 +115,6 @@ let $row = $('.main-mode').masonry({
 
 const $list = $('.list-mode');
 
-
 const dataLayout = new function () {
   
   let file = [];
@@ -149,28 +148,19 @@ const dataLayout = new function () {
 };
 
 $.getJSON('/data/gallery.json', function (json) {
-  
-  // elements = _.map(json, (d) => new Element(d));
-  //
-  
+
   dataLayout.setFile(json);
-  
-  // file = json;
-  //
-  // for (let i = 0; i < 30; i++) {
-  //   elements.push(new Element(json[i]));
-  // }
   
 });
 
 
 const mainTemplate = `<div class="col-md-4 padding-0">
-    <div class="card mb-4 box-shadow margin-0 border-0"><img class="card-img-top background border" />
+    <div class="card mb-4 box-shadow margin-0 border-0"><img class="card-img-top background border"/>
     </div>
 </div>`;
 
 const listTemplate = `<div class="list-view">
-    <img class="picture" alt="Card image cap" />
+    <img class="img picture" alt="Card image cap" />
     <div class="filename"></div>
     <div class="tags"></div>
 </div>`;
@@ -181,9 +171,9 @@ function Element(data) {
   
   const $ele = $(mainTemplate);
   
-  $ele.find('.background').css('background-image', 'url(../images/medium/' + data.mediumFileName + ')');
+  $ele.find('img').attr('src', '../images/medium/' + data.mediumFileName);
   
-  const num = Number(data.numberOfPeople) - 7;
+  // $ele.find('.background').css('background-image', 'url(../images/medium/' + data.mediumFileName + ')');
   
   $row.append($ele).masonry('appended', $ele);
   
