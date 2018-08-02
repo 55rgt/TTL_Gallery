@@ -32,6 +32,8 @@
       padding-right: 8px;
       display: inline-block;
       line-height: 34px; }
+  .list-view:hover {
+    background: #efefef; }
 
 .line {
   width: 100%;

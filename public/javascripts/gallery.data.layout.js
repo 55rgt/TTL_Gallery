@@ -165,6 +165,8 @@ const mainTemplate = `<div class="col-md-4 padding-0">
     </div>
 </div>`;
 
+
+
 const listTemplate = `<div class="list-view">
     <img class="img picture" alt="Card image cap" />
     <div class="filename"></div>
@@ -181,8 +183,16 @@ function Element(data) {
   $ele.find('img').attr('src', '../images/medium/' + data.mediumFileName);
 
   let $img = $('img');
+  let $tagsContents = $('.main-tags-contents');
+  
+  $tagsContents.on('mousedown', function(){
+    $(this).css('pointer-events', 'none');
+  });
+  
+  
+  $img.off().on('mouseup', function () {
 
-  $img.off().on('click', function () {
+      $($tagsContents).css('pointer-events', 'auto');
       console.log('clicked');
       window.open(this.src);
   });
@@ -272,11 +282,4 @@ $row.imagesLoaded().progress(function () {
 
 
 
-
-//
-// function ListElement(data) {
-//
-//   return this;
-// }
-//
 
