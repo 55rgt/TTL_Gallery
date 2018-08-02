@@ -3,18 +3,22 @@ const Slider = function ($root, min, max) {
     const temp = $root.append(`
         <div class="slider-zone">
             <div class="bar">
-                <div class="circle left">
-                <div class="circle-number">0</div>
-</div>
-                <div class="circle right"><div class="circle-number">20</div></div>
+                <div class="circle left"><div class="circle-number"></div></div>
+                <div class="circle right"><div class="circle-number"></div></div>
             </div>
-
-        </div>`);
+        </div>
+    <div class="number-zone">
+        <div class="number left"></div>
+        <div class="empty-zone"></div>
+        <div class="number right"></div>
+    </div>
+`);
 
     const points = [];
     let count;
 
     const $bar = $(temp.find('.bar'));
+
 
 
     const setPoints = function () {
@@ -25,6 +29,13 @@ const Slider = function ($root, min, max) {
 
     };
     setPoints();
+
+    const setLine = () => {
+        for(let i = 0; i < points.length; i++) {
+            $bar.append(`<div class="line" style="left:${points[i]}px"></div>`);
+        }
+    };
+    setLine();
 
     //
     // const getLeftValue = function () {

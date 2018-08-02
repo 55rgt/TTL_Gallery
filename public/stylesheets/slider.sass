@@ -1,11 +1,12 @@
 
 .slider-zone
-  width: 300px
-  height: 50px
+  width: 400px
+  height: 40px
   margin: auto
   display: flex
   justify-content: center
   align-items: center
+
   .bar
     width: 95%
     height: 30%
@@ -14,12 +15,18 @@
     display: flex
     position: relative
     box-shadow: 0 4px 4px 0 rgba(139, 139, 139, 0.18)
+    .line
+      position: absolute
+      top: 15px
+      width: 0.5px
+      height: 8px
+      border: solid 0.5px rgba(84, 91, 97, 0.2)
 
     .circle
       position: absolute
-      width: 20px
-      height: 20px
-      border-radius: 50%
+      width: 15px
+      height: 24px
+      border-radius: 3px
       background: rgba(0, 131, 183, 0.85)
       top: -4px
       z-index: 3
@@ -35,3 +42,18 @@
         color: white
         font-size: 15px
         text-align: center
+
+
+.number-zone
+  width: 400px
+  height: 25px
+  display: flex
+  .empty-zone
+    flex: 1
+  .number
+    height: 100%
+    width: 30px
+    margin: 0 8px
+    border: solid 1px #eeeeee
+    border-radius: 5px
+    background: white
