@@ -182,7 +182,7 @@ function Element(data) {
 
   let $img = $('img');
 
-  $img.on('click', function () {
+  $img.off().on('click', function () {
       console.log('clicked');
       window.open(this.src);
   });
