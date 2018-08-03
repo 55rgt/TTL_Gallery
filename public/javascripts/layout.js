@@ -95,10 +95,7 @@ const filterNavigator = new function () {
     
     slider = new Slider($scrollZone, min, max);
     
-    $(document).off().on('mouseup', function (event) {
-      
-      let left = slider.getLeftValue();
-      let right = slider.getRightValue();
+    $(document).off().on('mouseup', '.circle', function (event) {
       
       slider.mouseUp(event);
       
