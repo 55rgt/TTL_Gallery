@@ -32,12 +32,13 @@ const Slider = function ($root, min, max) {
     };
     setPoints();
 
-    const setLine = () => {
+    const drawLine = () => {
         for (let i = min; i < max + 1; i++) {
             $bar.append(`<div class="line" style="left:${points[i] - points[min]}px"></div>`);
         }
+        $bar.append(`<div class="line" style="left:${$bar.width() - points[min] + $bar.position().left}px"></div>`);
     };
-    setLine();
+    drawLine();
 
     //
     // const getLeftValue = function () {
@@ -62,22 +63,12 @@ const Slider = function ($root, min, max) {
 
 
     this.getLeftValue = function () {
-        const $left = $('.circle:first');
-        for (let i = min; i < max + 1; i++) {
-            if ($left.position().left + $bar.position().left - points[i] <= 0) {
-                return i - 1;
-            }
-        }
-        return max;
+        const $left = $('.number.left');
+        return $left.text()*1;
     };
     this.getRightValue = () => {
-        const $right = $('.circle:last');
-        for (let i = min; i < max + 1; i++) {
-            if ($right.position().left + $bar.position().left - points[i] <= 0) {
-                return i - 1;
-            }
-        }
-        return max;
+        const $right = $('.number.right');
+        return $right.text()*1;
 
     };
 
