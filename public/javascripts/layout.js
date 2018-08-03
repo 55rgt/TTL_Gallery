@@ -93,7 +93,7 @@ const filterNavigator = new function () {
     
     slider = new Slider($scrollZone, min, max);
     
-    $(document).on('mouseup', function (event) {
+    $(document).off().on('mouseup', function (event) {
       
       let left = slider.getLeftValue();
       let right = slider.getRightValue();
@@ -114,14 +114,14 @@ const filterNavigator = new function () {
     // 클릭이나 검색을 하면 -> 필터
     let filterReceiver = new FilterReceiver(data);
     
-    $searchButton.on('click', function () {
+    $searchButton.off().on('click', function () {
       if(!tagArray.includes($searchInput.val().trim()) && tagArray.length < 6)
       {
         filterResult(filterReceiver);
       }
     });
     
-    $searchInput.on('keyup', function (event) {
+    $searchInput.off().on('keyup', function (event) {
       
       if (event.keyCode === 13 && $searchInput.val().trim() !== '' &&
         !tagArray.includes($searchInput.val().trim()) && tagArray.length < 6) {
