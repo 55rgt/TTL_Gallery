@@ -113,7 +113,7 @@ let $row = $('.main-mode').masonry({
   percentPosition: true
 });
 
-const $list = $('.list-mode');
+const $list = $('.list-content');
 
 const dataLayout = new function () {
   
@@ -244,28 +244,6 @@ function Element(data) {
   for (let i = 0; i < data.tags.length; i++) {
     $listEle.find('.tags').append(`<div class = tag>${data.tags[i]}</div>`);
   }
-  
-  
-  this.hasTag = (val) => {
-    
-    for (let i = 0; i < data.tags.length; i++) {
-      const tagValue = data.tags[i].toLowerCase();
-      if (tagValue.indexOf(val) !== -1) {
-        
-        if ($ele.hasClass('display-none'))
-          $ele.removeClass('display-none');
-        
-        break;
-      }
-      else {
-        
-        if (!$ele.hasClass('display-none'))
-          $ele.addClass('display-none');
-        
-      }
-    }
-    
-  };
   
   $row.imagesLoaded().progress(function () {
     $row.masonry('layout');
