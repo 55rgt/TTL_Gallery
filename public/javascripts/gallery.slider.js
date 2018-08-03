@@ -23,6 +23,11 @@ const Slider = function ($root, min, max) {
     const points = [];
     const count = max - min + 1;
 
+    let prevLeft = min;
+    let prevRight = max;
+    let currLeft = min;
+    let currRight = max;
+
 
     const setPoints = function () {
         for (let i = min; i < max + 1; i++) {
@@ -40,28 +45,6 @@ const Slider = function ($root, min, max) {
     };
     drawLine();
 
-    //
-    // const getLeftValue = function () {
-    //     const $left = $('.circle:first');
-    //     for(let i = 0; i < points.length; i++) {
-    //         if($left.position().left + $bar.position().left - points[i] < 0) {
-    //             return i-1;
-    //         }
-    //     }
-    //     return points.length-1;
-    // };
-    // const getRightValue = () => {
-    //     const $right = $('.circle:last');
-    //     for(let i = 0; i < points.length; i++) {
-    //         if($right.position().left + $bar.position().left - points[i] < 0) {
-    //             return i-1;
-    //         }
-    //     }
-    //     return points.length-1;
-    //
-    // };
-
-
     this.getLeftValue = function () {
         const $left = $('.number.left');
         return $left.text()*1;
@@ -73,6 +56,8 @@ const Slider = function ($root, min, max) {
     };
 
     $circle.on('mousedown', function () {
+        prevLeft = currLeft;
+        prevRight = currRight;
         const dragItem = $(this);
         dragItem.attr('id', 'drag');
         const $drag = $('#drag');
@@ -116,7 +101,6 @@ const Slider = function ($root, min, max) {
                     temp.find('.number-zone>.right').text(`${max}`);
                 }
             }
-            // }
         });
 
     });
@@ -125,6 +109,13 @@ const Slider = function ($root, min, max) {
         const $drag = $('#drag');
         $drag.off('mousemove');
         $drag.attr('id', '');
+        currLeft = this.getLeftValue();
+        currRight = this.getRightValue();
+    };
+
+    this.isValueChanged = function () {
+
+        return prevLeft !== currLeft || prevRight !== currRight;
 
     };
 
