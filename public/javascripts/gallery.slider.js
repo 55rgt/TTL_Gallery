@@ -126,43 +126,6 @@ const Slider = function ($root, min, max) {
         $drag.off('mousemove');
         $drag.attr('id', '');
 
-        // const mouseX = event.clientX;
-        // const mouseY = event.clientY;
-        // // if(mouseY > $bar.position().top && mouseY < $bar.position().top + $bar.height()) {
-        //     if (mouseX < points[min]) {
-        //         $drag.css('left', `${points[min] - $bar.position().left + $bar.width() / (count * 2) - $circle.width() / 2}px`);
-        //         // if ($drag.attr('pos') === 'left') {
-        //         //     temp.find('.number-zone>.left').text(`${min}`);
-        //         // }
-        //         // else {
-        //         //     temp.find('.number-zone>.right').text(`${min}`);
-        //         // }
-        //
-        //     }
-        //
-        //     else if (mouseX > points[min] && mouseX < points[max]) {
-        //         for (let i = min; i < max + 1; i++) {
-        //             if (mouseX > points[i] && mouseX < points[i + 1]) {
-        //                 $drag.css('left', `${points[i] - $bar.position().left + $bar.width() / (count * 2) - $circle.width() / 2}px`);
-        //                 // if ($drag.attr('pos') === 'left') {
-        //                 //     temp.find('.number-zone>.left').text(`${i}`);
-        //                 // }
-        //                 // else {
-        //                 //     temp.find('.number-zone>.right').text(`${i}`);
-        //                 // }
-        //             }
-        //         }
-        //     }
-        //     else {
-        //         $drag.css('left', `${points[max] - $bar.position().left + $bar.width() / (count * 2) - $circle.width() / 2}px`);
-        //         // if ($drag.attr('pos') === 'left') {
-        //         //     temp.find('.number-zone>.left').text(`${max}`);
-        //         // }
-        //         // else {
-        //         //     temp.find('.number-zone>.right').text(`${max}`);
-        //         // }
-        //     }
-        // // }
     };
 
 
