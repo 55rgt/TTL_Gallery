@@ -61,32 +61,45 @@
         background-position: 0 60%;
         background-size: 100% auto; }
     .main-grid section .filter-navigator {
-      display: flex;
-      align-items: center;
       width: 100%;
-      height: 80px;
+      min-height: 60px;
       margin: 10px 0;
       padding: 0 15px;
       background-color: white;
       border-bottom: 1px solid #ddd;
       z-index: 1000; }
-      .main-grid section .filter-navigator form.form-inline.my-2.my-lg-0 {
-        margin-left: 20px; }
-        .main-grid section .filter-navigator form.form-inline.my-2.my-lg-0 .none {
-          display: none; }
-        .main-grid section .filter-navigator form.form-inline.my-2.my-lg-0 input {
-          outline: none; }
-      .main-grid section .filter-navigator .tag-zone {
-        flex: 1;
+      .main-grid section .filter-navigator .search-zone {
         display: flex;
-        flex-wrap: wrap; }
+        align-items: center;
+        height: 60px; }
+        .main-grid section .filter-navigator .search-zone form.form-inline.my-2.my-lg-0 {
+          margin-left: 20px;
+          height: 20px; }
+          .main-grid section .filter-navigator .search-zone form.form-inline.my-2.my-lg-0 .none {
+            display: none; }
+          .main-grid section .filter-navigator .search-zone form.form-inline.my-2.my-lg-0 input {
+            width: 360px;
+            height: 36px;
+            outline: none; }
+      .main-grid section .filter-navigator .tag-zone {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 8px 16px 0 40px; }
         .main-grid section .filter-navigator .tag-zone > .tag {
-          margin-right: 5px;
+          margin-right: 16px;
+          margin-bottom: 16px;
           transition-property: color;
-          transition-duration: 0.5s;
-          cursor: pointer; }
+          cursor: pointer;
+          background: white;
+          color: #555;
+          height: 32px;
+          font-size: 14px;
+          padding: 4px 8px;
+          border: 1px solid #555;
+          border-radius: 10px; }
           .main-grid section .filter-navigator .tag-zone > .tag:hover {
-            color: #00B7FF; }
+            color: white;
+            background: #555; }
       .main-grid section .filter-navigator .switch {
         position: relative;
         display: inline-block;
@@ -103,7 +116,7 @@
           left: 0;
           right: 0;
           bottom: 0;
-          background-color: #222222;
+          background-color: #555;
           -webkit-transition: .4s;
           transition: .4s; }
           .main-grid section .filter-navigator .switch .slider:before {
@@ -117,7 +130,7 @@
             -webkit-transition: .4s;
             transition: .4s; }
         .main-grid section .filter-navigator .switch input:checked + .slider {
-          background-color: #222222; }
+          background-color: #555; }
         .main-grid section .filter-navigator .switch input:focus + .slider {
           box-shadow: 0 0 1px #2196F3; }
         .main-grid section .filter-navigator .switch input:checked + .slider:before {
@@ -160,5 +173,22 @@
 
 .swiper-color {
   filter: brightness(0); }
+
+.flex {
+  flex: 1; }
+
+.search-bar {
+  width: 100px;
+  height: 36px;
+  border-radius: 5px;
+  background: #555;
+  color: #fff;
+  line-height: 36px;
+  text-align: center;
+  font-size: 17px;
+  padding-left: 24px;
+  cursor: pointer; }
+  .search-bar:active {
+    background: #444; }
 
 /*# sourceMappingURL=index.css.map */

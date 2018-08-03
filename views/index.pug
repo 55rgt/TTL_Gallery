@@ -24,24 +24,26 @@ block content
                     .swiper-button-next.swiper-color
                     .swiper-button-prev.swiper-color
             .filter-navigator
-                .scroll-filter
-                    //input(type="text" placeholder="min").min
-                    //input(type="text" placeholder="max").max
-                form.form-inline.my-2.my-lg-0
-                    input.form-control.mr-sm-2(type='text' placeholder='Search' aria-label='Search')
-                    input.none
+                .search-zone
+                    .scroll-filter
+                        //input(type="text" placeholder="min").min
+                        //input(type="text" placeholder="max").max
+                    form.form-inline.my-2.my-lg-0
+                        input.form-control.mr-sm-2(type='text' placeholder='' aria-label='')
+                        input.none
+                    .search-bar Search
+                    .flex
+                    label.switch
+                        input(type='checkbox')
+                        span.slider.round
                 .tag-zone
-
-                label.switch
-                    input(type='checkbox')
-                    span.slider.round
             .gallery
               .main-mode
               .list-mode.display-none
                 .list-header
                     .list-name.list-header-content 이름
                     .list-tag.list-header-content 태그
-
+                .list-content
 
             footer.text-muted
                 p.float-right
