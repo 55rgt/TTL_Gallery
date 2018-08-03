@@ -179,8 +179,9 @@ function Element(data) {
 
   const $ele = $(mainTemplate);
 
+  
   $ele.find('img').attr('src', '../images/medium/' + data.mediumFileName);
-
+  $row.append($ele).masonry('appended', $ele);
   let $img = $('img');
   let $tagsContents = $('.main-tags-contents');
   
@@ -190,13 +191,11 @@ function Element(data) {
   
   
   $img.off().on('mouseup', function () {
-
       $($tagsContents).css('pointer-events', 'auto');
       console.log('clicked');
       window.open(this.src);
   });
-  
-  $row.append($ele).masonry('appended', $ele);
+ 
   
   const rowWidth = Number($('.gallery').width());
   
