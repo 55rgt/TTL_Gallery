@@ -360,8 +360,8 @@ const filterNavigator = new function () {
     
     
     const template = `<div class='tag'>#${$searchInput.val().trim()}</div>`;
-    
-    $tagZone.append(template);
+    if ($searchInput.val().length > 0)
+      $tagZone.append(template);
     
     tagArray.push($searchInput.val().trim());
     
