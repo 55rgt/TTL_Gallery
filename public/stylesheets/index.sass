@@ -101,8 +101,8 @@
           .none
             display: none
           input
-            width: 360px
-            height: 36px
+            width: 160px
+            height: 32px
             outline: none
 
       // Tags
@@ -110,9 +110,14 @@
         display: flex
         flex-wrap: wrap
         padding: 8px 16px 0 40px
+        height: 100%
+        //border: 1px solid red
+        overflow-y: auto
+        align-items: center
         > .tag
           margin-right: 16px
           margin-bottom: 16px
+          margin-top: 4px
           transition-property: color
           cursor: pointer
           background: white
@@ -122,6 +127,10 @@
           padding: 4px 8px
           border: 1px solid #555
           border-radius: 10px
+          max-width: 70px
+          overflow: hidden
+          white-space: nowrap
+          text-overflow: ellipsis
           &:hover
             color: white
             background: #555
@@ -222,15 +231,21 @@
 
 
 .search-bar
-  width: 100px
-  height: 36px
+  width: 68px
+  height: 32px
   border-radius: 5px
   background: #555
   color: #fff
-  line-height: 36px
+  line-height: 32px
+  padding-left: 10px
   text-align: center
-  font-size: 17px
-  padding-left: 24px
+  font-size: 15px
   cursor: pointer
   &:active
     background: #444
+
+.margin-0
+  margin: 0
+
+.margin-left
+  margin-left: 24px !important

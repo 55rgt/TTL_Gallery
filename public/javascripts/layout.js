@@ -362,7 +362,7 @@ const filterNavigator = new function () {
   function filterResult(filterReceiver) {
     
     
-    const template = `<div class='tag'>#${$searchInput.val().trim()}</div>`;
+    const template = `<div class='tag'>${$searchInput.val().trim()}</div>`;
     if ($searchInput.val().length > 0)
       $tagZone.append(template);
     
@@ -393,6 +393,7 @@ const filterNavigator = new function () {
     $tags.on('click', function () {
       const $this = $(this);
       
+      console.log('ㄴㄴㄴ', tagArray.indexOf($this.text()));
       tagArray.splice(tagArray.indexOf($this.text()), 1);
       console.log(tagArray);
       $this.remove();
