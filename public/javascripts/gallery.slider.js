@@ -55,7 +55,7 @@ const Slider = function ($root, min, max) {
 
     };
 
-    $circle.on('mousedown', function () {
+    $circle.off().on('mousedown', function () {
         prevLeft = currLeft;
         prevRight = currRight;
         const dragItem = $(this);
@@ -63,7 +63,7 @@ const Slider = function ($root, min, max) {
         const $drag = $('#drag');
 
 
-        dragItem.on('mousemove', function (event) {
+        dragItem.off().on('mousemove', function (event) {
             if (event.clientX > $bar.position().left && event.clientX < $bar.position().left + $bar.width()) {
                 $(this).css('left', `${event.clientX - $circle.width() / 2 - $bar.position().left}px`);
             }

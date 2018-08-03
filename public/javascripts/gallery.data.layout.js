@@ -185,7 +185,7 @@ function Element(data) {
   let $img = $('img');
   let $tagsContents = $('.main-tags-contents');
   
-  $tagsContents.on('mousedown', function(){
+  $tagsContents.off().on('mousedown', function(){
     $(this).css('pointer-events', 'none');
   });
   

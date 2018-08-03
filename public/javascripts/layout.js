@@ -95,20 +95,19 @@ const filterNavigator = new function () {
     
     slider = new Slider($scrollZone, min, max);
     
-    $(document).on('mouseup', function (event) {
+    $(document).off().on('mouseup', function (event) {
       
       let left = slider.getLeftValue();
       let right = slider.getRightValue();
       
       slider.mouseUp(event);
-      filterReceiver.setValue(slider.getLeftValue(), slider.getRightValue());
-      filterReceiver.updateFilter();
       
-      if (left !== slider.getLeftValue() || right !== slider.getRightValue()) {
-        
-        $('.main-mode').empty();
-        $('.list-content').empty();
-        dataLayout.setFile(filterReceiver.getFilter().getCurrentData());
+      
+      if (slider.isValueChanged()) {
+  
+        filterReceiver.setValue(slider.getLeftValue(), slider.getRightValue());
+        filterReceiver.updateFilter();
+        filterResult(filterReceiver);
       }
     });
     
@@ -116,14 +115,13 @@ const filterNavigator = new function () {
     // 클릭이나 검색을 하면 -> 필터
     let filterReceiver = new FilterReceiver(data);
     
-    $searchButton.on('click', function () {
-      if(!tagArray.includes($searchInput.val().trim()) && tagArray.length < 6)
-      {
+    $searchButton.off().on('click', function () {
+      if(!tagArray.includes($searchInput.val().trim()) && tagArray.length < 6) {
         filterResult(filterReceiver);
       }
     });
     
-    $searchInput.on('keyup', function (event) {
+    $searchInput.off().on('keyup', function (event) {
       
       if (event.keyCode === 13 && $searchInput.val().trim() !== '' &&
         !tagArray.includes($searchInput.val().trim()) && tagArray.length < 6) {
@@ -166,7 +164,7 @@ const filterNavigator = new function () {
     
     $tags.unbind();
     
-    $tags.on('click', function () {
+    $tags.off().on('click', function () {
       const $this = $(this);
       
       console.log('ㄴㄴㄴ', tagArray.indexOf($this.text()));
@@ -195,7 +193,7 @@ const filterNavigator = new function () {
   const $mainMode = $('.main-mode');
   const $list = $('.list-mode');
   
-  $toggleButton.on('click', function () {
+  $toggleButton.off().on('click', function () {
     if ($toggleButton.is(':checked')) {
       
       if (!$mainMode.hasClass('display-none'))
