@@ -341,7 +341,10 @@ const filterNavigator = new function () {
     let filterReceiver = new FilterReceiver(data);
     
     $searchButton.on('click', function () {
-      filterResult(filterReceiver);
+      if(!tagArray.includes($searchInput.val().trim()) && tagArray.length < 6)
+      {
+        filterResult(filterReceiver);
+      }
     });
     
     $searchInput.on('keyup', function (event) {
