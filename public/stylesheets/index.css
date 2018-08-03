@@ -81,6 +81,9 @@
             width: 160px;
             height: 32px;
             outline: none; }
+            .main-grid section .filter-navigator .search-zone form.form-inline.my-2.my-lg-0 input:focus {
+              border-color: rgba(0, 0, 0, 0.2);
+              box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2); }
       .main-grid section .filter-navigator .tag-zone {
         display: flex;
         flex-wrap: wrap;
