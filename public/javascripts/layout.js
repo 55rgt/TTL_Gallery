@@ -341,7 +341,10 @@ const filterNavigator = new function () {
     let filterReceiver = new FilterReceiver(data);
     
     $searchButton.on('click', function () {
-      filterResult(filterReceiver);
+      if(!tagArray.includes($searchInput.val().trim()) && tagArray.length < 6)
+      {
+        filterResult(filterReceiver);
+      }
     });
     
     $searchInput.on('keyup', function (event) {
@@ -359,7 +362,7 @@ const filterNavigator = new function () {
   function filterResult(filterReceiver) {
     
     
-    const template = `<div class='tag'>#${$searchInput.val().trim()}</div>`;
+    const template = `<div class='tag'>${$searchInput.val().trim()}</div>`;
     if ($searchInput.val().length > 0)
       $tagZone.append(template);
     
@@ -390,6 +393,7 @@ const filterNavigator = new function () {
     $tags.on('click', function () {
       const $this = $(this);
       
+      console.log('ㄴㄴㄴ', tagArray.indexOf($this.text()));
       tagArray.splice(tagArray.indexOf($this.text()), 1);
       console.log(tagArray);
       $this.remove();

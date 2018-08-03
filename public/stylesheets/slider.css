@@ -1,10 +1,10 @@
 .slider-zone {
-  width: 320px;
+  width: 280px;
   height: 34px;
-  margin: auto;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  margin-left: 8px; }
   .slider-zone .bar {
     width: 95%;
     height: 5%;
@@ -39,21 +39,21 @@
         text-align: center; }
 
 .number-zone {
-  width: 400px;
+  width: 300px;
   height: 25px;
-  display: flex;
-  transform: scale(0.8); }
+  display: flex; }
   .number-zone .empty-zone {
     flex: 1; }
   .number-zone .number {
     text-align: center;
+    padding-right: 4px;
     height: 10px;
-    width: 30px;
+    width: 32px;
     margin: 0 8px;
     border-radius: 5px;
     background: white;
     color: #777777;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 10px; }
 
 /*# sourceMappingURL=slider.css.map */
